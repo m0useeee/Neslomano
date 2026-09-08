@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    min-height: 100vh;
+}
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.footer{
+    margin-top: auto;
+}
+.history-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+.equipment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 30px;
+    background: #f8fafc;
+    border-bottom: 2px solid #eef2f7;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.equipment-info h2 {
+    color: #1a2b4c;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+.equipment-info p {
+    color: #2d3a4f;
+    font-size: 15px;
+    margin: 4px 0;
+}
+.equipment-info p strong {
+    font-weight: 600;
+    color: #1f2a3a;
+}
+.qr-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 120px;
+}
+.qr-placeholder {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border: 2px dashed #d0d7e2;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b7a8f;
+    font-size: 14px;
+}
+.qr-placeholder span {
+    font-size: 48px;
+    margin-bottom: 4px;
+}
+.qr-placeholder p {
+    margin: 0;
+    font-size: 13px;
+}
+.btn-download-qr {
+    background: #1a2b4c;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 500;
+}
+.btn-download-qr:hover {
+    background: #2a3f64;
+}
+.history-list {
+    padding: 25px 30px;
+}
+.history-list h3 {
+    color: #1a2b4c;
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid #eef2f7;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.history-item:last-child {
+    border-bottom: none;
+}
+.history-item .item-main {
+    flex: 1;
+    min-width: 200px;
+}
+.history-item .item-main .item-title {
+    font-weight: 600;
+    color: #1a2b4c;
+    font-size: 16px;
+}
+.history-item .item-main .item-date {
+    color: #6b7a8f;
+    font-size: 13px;
+    margin: 4px 0 6px;
+}
+.history-item .item-main .item-description {
+    color: #2d3a4f;
+    font-size: 14px;
+    margin: 0;
+}
+.history-item .item-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.history-item .item-meta .status-badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.status-new { background: #fff3cd; color: #856404; }
+.status-in_progress { background: #cfe2ff; color: #084298; }
+.status-completed { background: #d1e7dd; color: #0a3622; }
+.history-item .item-meta .photo-link {
+    color: #2a7de1;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.history-item .item-meta .photo-link:hover {
+    text-decoration: underline;
+}
+.no-data {
+    text-align: center;
+    padding: 30px;
+    color: #6b7a8f;
+}
+@media (max-width: 768px) {
+    .equipment-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .qr-block {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .qr-placeholder {
+        width: 80px;
+        height: 80px;
+    }
+    .qr-placeholder span {
+        font-size: 32px;
+    }
+    .history-item {
+        flex-direction: column;
+    }
+    .history-item .item-meta {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .container { padding: 15px; }
+    .equipment-header, .history-list { padding: 20px; }
+}

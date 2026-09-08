@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заявка #123 — Neslomano</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/ticket-detail.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="tickets.html" class="logo">Neslomano</a>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="tickets.html">Заявки</a></li>
+                <li><a href="create-ticket.html">Создать заявку</a></li>
+                <li><a href="history.html">История (QR)</a></li>
+                <li><a href="admin.html">Админ-панель</a></li>
+            </ul>
+        </nav>
+        <div class="header-user">
+            <span class="username">Иванов И.</span>
+            <a href="login.html" class="logout-link">Выйти</a>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="tickets.html">Заявки</a>
+        <span> / </span>
+        <span>Заявка #123</span>
+    </div>
+
+    <div class="container">
+        <div class="detail-card">
+            <div class="detail-header">
+                <h1>Заявка #123</h1>
+                <span class="status-badge status-new">Новая</span>
+            </div>
+            <div class="detail-body">
+                <div class="detail-main">
+                    <div class="info-grid">
+                        <div class="info-item"><span class="label">Оборудование</span><span class="value">Принтер HP LaserJet</span></div>
+                        <div class="info-item"><span class="label">Серийный номер</span><span class="value">SN-12345</span></div>
+                        <div class="info-item"><span class="label">Кабинет</span><span class="value">101</span></div>
+                        <div class="info-item"><span class="label">Заявщик</span><span class="value">Иванов И.</span></div>
+                        <div class="info-item"><span class="label">Дата создания</span><span class="value">2026-09-01 10:15</span></div>
+                    </div>
+                    <div class="description-block">
+                        <h3>Описание поломки</h3>
+                        <p id="ticketDescription">Не печатает, ошибка 0x0001. При попытке печати появляется сообщение об ошибке.</p>
+                    </div>
+                    <div class="photo-block">
+                        <h3>Фото поломки</h3>
+                        <div class="photo-wrapper">
+                            <img id="ticketPhoto" src="https://via.placeholder.com/600x400/1a2b4c/FFFFFF?text=Фото+заявки" alt="Фото поломки">
+                            <div class="watermark">Заявка #123 | Каб. 101 | 2026-09-01</div>
+                            <button class="btn-download-photo">Скачать фото</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-sidebar">
+                    <div class="actions-block">
+                        <h4>Действия</h4>
+                        <button class="btn-back" onclick="window.location.href='tickets.html'">← Назад к списку</button>
+                        <button class="btn-edit" onclick="openEditModal()">Редактировать</button>
+                        <button class="btn-delete" onclick="alert('Удаление заявки (будет позже)')">Удалить</button>
+                    </div>
+                    <div class="history-block">
+                        <h4>История статусов</h4>
+                        <ul>
+                            <li>01.09.2026 10:15 — Создана (Новая)</li>
+                            <li>02.09.2026 09:00 — Изменено на "В работе"</li>
+                            <li>03.09.2026 16:30 — Изменено на "Завершена"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно редактирования (без филиала) -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2>Редактирование заявки #123</h2>
+                <button class="modal-close" onclick="closeEditModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <form id="editTicketForm" class="ticket-form">
+                    <div class="form-section">
+                        <h3>Информация о заявке</h3>
+                        <p><strong>Оборудование:</strong> Принтер HP LaserJet</p>
+                        <p><strong>Серийный номер:</strong> SN-12345</p>
+                        <p><strong>Кабинет:</strong> 101</p>
+                    </div>
+                    <div class="form-section">
+                        <h3>Описание поломки</h3>
+                        <div class="form-group">
+                            <label for="modalDescription">Описание <span class="required">*</span></label>
+                            <textarea id="modalDescription" rows="4" required>Не печатает, ошибка 0x0001. При попытке печати появляется сообщение об ошибке.</textarea>
+                        </div>
+                    </div>
+                    <div class="form-section">
+                        <h3>Фото поломки</h3>
+                        <div class="current-photo" style="margin-bottom:10px;">
+                            <p>Текущее фото: <a href="#" target="_blank">посмотреть</a></p>
+                        </div>
+                        <div class="drop-zone" id="modalDropZone">
+                            <div class="drop-zone-content">
+                                <span class="drop-icon">Upload</span>
+                                <p>Перетащите новый файл или кликните для выбора</p>
+                                <span class="drop-hint">Поддерживаются JPG, PNG (до 10 МБ)</span>
+                            </div>
+                            <input type="file" id="modalFileInput" accept=".jpg,.jpeg,.png" style="display:none;">
+                        </div>
+                        <div id="modalFilePreview" class="file-preview" style="display:none;">
+                            <img id="modalPreviewImage" src="#" alt="Превью">
+                            <div class="file-info">
+                                <span id="modalFileName"></span>
+                                <span id="modalFileSize"></span>
+                                <button type="button" id="modalRemoveFileBtn" class="remove-btn">✕</button>
+                            </div>
+                        </div>
+                        <div class="form-error" id="modalFileError"></div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit">Сохранить изменения</button>
+                        <button type="button" class="btn-cancel" onclick="closeEditModal()">Отмена</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Neslomano. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function openEditModal() {
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+        document.getElementById('editModal').addEventListener('click', function(e) {
+            if (e.target === this) closeEditModal();
+        });
+        document.getElementById('editTicketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const newDescription = document.getElementById('modalDescription').value.trim();
+            if (!newDescription) {
+                alert('Описание не может быть пустым!');
+                return;
+            }
+            alert('Заявка #123 обновлена (имитация)');
+            document.getElementById('ticketDescription').textContent = newDescription;
+            closeEditModal();
+        });
+        // Drag & drop заглушка
+        const dropZone = document.getElementById('modalDropZone');
+        const fileInput = document.getElementById('modalFileInput');
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropZone.classList.remove('dragover');
+            alert('Загрузка фото (будет позже)');
+        });
+        document.getElementById('modalRemoveFileBtn').addEventListener('click', function() {
+            document.getElementById('modalFilePreview').style.display = 'none';
+        });
+    </script>
+
+</body>
+</html>

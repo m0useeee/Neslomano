@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    min-height: 100vh;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.footer{
+    margin-top: auto;
+}
+.container h2 {
+    color: #1a2b4c;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+.ticket-form {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+.form-section {
+    margin-bottom: 30px;
+}
+.form-section h3 {
+    font-size: 18px;
+    color: #1a2b4c;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eef2f7;
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.form-row .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+.form-group {
+    margin-bottom: 18px;
+}
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #1f2a3a;
+    font-size: 14px;
+}
+.form-group .required {
+    color: #d32f2f;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #d0d7e2;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.2s;
+    background: #fafcff;
+    font-family: inherit;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #2a7de1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.15);
+}
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.drop-zone {
+    border: 2px dashed #d0d7e2;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #fafcff;
+    position: relative;
+}
+.drop-zone:hover {
+    border-color: #2a7de1;
+    background: #f0f7ff;
+}
+.drop-zone.dragover {
+    border-color: #2a7de1;
+    background: #e9f0ff;
+}
+.drop-zone-content .drop-icon {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 10px;
+}
+.drop-zone-content p {
+    font-size: 16px;
+    color: #1f2a3a;
+    margin-bottom: 5px;
+}
+.drop-zone-content .drop-hint {
+    font-size: 13px;
+    color: #6b7a8f;
+}
+.file-preview {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #d0d7e2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #fafcff;
+}
+.file-preview img {
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+.file-preview .file-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.file-preview .file-info #fileName {
+    font-weight: 500;
+    color: #1f2a3a;
+}
+.file-preview .file-info #fileSize {
+    font-size: 13px;
+    color: #6b7a8f;
+}
+.remove-btn {
+    background: #fee;
+    border: none;
+    color: #d32f2f;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.remove-btn:hover {
+    background: #fdd;
+}
+.form-error {
+    color: #d32f2f;
+    font-size: 14px;
+    margin-top: 8px;
+    display: none;
+}
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+.btn-submit {
+    padding: 12px 32px;
+    background: #1a2b4c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    flex: 1;
+    min-width: 150px;
+}
+.btn-submit:hover {
+    background: #2a3f64;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(26, 43, 76, 0.3);
+}
+.btn-reset-form {
+    padding: 12px 32px;
+    background: #eef2f7;
+    color: #1f2a3a;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+    min-width: 150px;
+}
+.btn-reset-form:hover {
+    background: #dce2eb;
+}
+@media (max-width: 600px) {
+    .container { padding: 15px; }
+    .ticket-form { padding: 20px; }
+    .form-row { flex-direction: column; gap: 0; }
+    .form-actions { flex-direction: column; }
+    .btn-submit, .btn-reset-form { width: 100%; }
+    .file-preview { flex-wrap: wrap; justify-content: center; }
+}

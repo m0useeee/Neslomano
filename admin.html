@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель — Neslomano</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="tickets.html" class="logo">Neslomano</a>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="tickets.html">Заявки</a></li>
+                <li><a href="create-ticket.html">Создать заявку</a></li>
+                <li><a href="history.html">История (QR)</a></li>
+                <li><a href="admin.html" class="active">Админ-панель</a></li>
+            </ul>
+        </nav>
+        <div class="header-user">
+            <span class="username">Администратор</span>
+            <a href="login.html" class="logout-link">Выйти</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- ===== НОВЫЙ БЛОК С ЗАГОЛОВКОМ И КНОПКОЙ ===== -->
+        <div class="page-title">
+            <h2>Администрирование</h2>
+            <a href="create-ticket.html" class="btn-new">+ Новая заявка</a>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tab-tickets">Все заявки</button>
+            <button class="tab-btn" data-tab="tab-import">Импорт пользователей</button>
+            <button class="tab-btn" data-tab="tab-export">Экспорт отчёта</button>
+        </div>
+
+        <div id="tab-tickets" class="tab-content active">
+            <div class="filters">
+                <div class="filter-group">
+                    <input type="text" id="adminSearchInput" placeholder="Поиск по описанию...">
+                </div>
+                <div class="filter-group">
+                    <select id="adminFilterStatus">
+                        <option value="all">Все статусы</option>
+                        <option value="new">Новая</option>
+                        <option value="in_progress">В работе</option>
+                        <option value="completed">Завершена</option>
+                    </select>
+                    <select id="adminFilterRoom">
+                        <option value="all">Все кабинеты</option>
+                        <option value="101">101</option>
+                        <option value="202">202</option>
+                        <option value="303">303</option>
+                    </select>
+                    <select id="adminPageSize">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Оборудование</th>
+                            <th>Заявщик</th>
+                            <th>Кабинет</th>
+                            <th>Статус</th>
+                            <th>Дата</th>
+                            <th style="text-align: center;">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTicketsBody">
+                        <!-- Заполняется через JS -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination" id="adminPagination">
+                <!-- Заполняется через JS -->
+            </div>
+        </div>
+
+        <div id="tab-import" class="tab-content">
+            <div class="import-card">
+                <h3>Импорт пользователей из CSV</h3>
+                <p>Загрузите CSV-файл с колонками: <strong>ФИО, email</strong>.</p>
+                <p class="hint">Пример: Иванов Иван, ivanov@college.ru</p>
+                <div class="drop-zone" id="importDropZone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">Upload</span>
+                        <p>Перетащите CSV-файл или кликните для выбора</p>
+                        <span class="drop-hint">Поддерживается только .csv</span>
+                    </div>
+                    <input type="file" id="importFileInput" accept=".csv" style="display:none;">
+                </div>
+                <div id="importPreview" class="import-preview" style="display:none;">
+                    <span id="importFileName"></span>
+                    <button type="button" id="importRemoveBtn" class="remove-btn">✕</button>
+                </div>
+                <div id="importError" class="form-error"></div>
+                <button id="importBtn" class="btn-import">Загрузить и создать пользователей</button>
+            </div>
+        </div>
+
+        <div id="tab-export" class="tab-content">
+            <div class="export-card">
+                <h3>Экспорт отчёта по заявкам</h3>
+                <p>Скачайте CSV-отчёт со всеми заявками со следующими полями:</p>
+                <ul>
+                    <li>Дата заявки</li>
+                    <li>Оборудование</li>
+                    <li>Заявщик</li>
+                    <li>Описание</li>
+                    <li>Статус</li>
+                    <li>Дата закрытия</li>
+                </ul>
+                <button id="exportBtn" class="btn-export">Скачать CSV</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Neslomano. Все права защищены.</p>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

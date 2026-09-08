@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История оборудования — Neslomano</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/history.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="tickets.html" class="logo">Neslomano</a>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="tickets.html">Заявки</a></li>
+                <li><a href="create-ticket.html">Создать заявку</a></li>
+                <li><a href="history.html" class="active">История (QR)</a></li>
+                <li><a href="admin.html">Админ-панель</a></li>
+            </ul>
+        </nav>
+        <div class="header-user">
+            <span class="username">Гость</span>
+            <a href="login.html" class="logout-link">Войти</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="history-card">
+            <div class="equipment-header">
+                <div class="equipment-info">
+                    <h2 id="equipName">Принтер HP LaserJet</h2>
+                    <p><strong>Серийный номер:</strong> <span id="serialNumber">SN-12345</span></p>
+                    <p><strong>Кабинет:</strong> <span id="room">101</span></p>
+                    <!-- строка "Филиал" УДАЛЕНА -->
+                </div>
+                <div class="qr-block">
+                    <div class="qr-placeholder">
+                        <span>QR</span>
+                        <p>QR-код</p>
+                    </div>
+                    <button class="btn-download-qr">Скачать QR</button>
+                </div>
+            </div>
+            <div class="history-list">
+                <h3>История ремонтов</h3>
+                <div id="historyItems">
+                    <div class="history-item">
+                        <div class="item-main">
+                            <div class="item-title">Заявка #1</div>
+                            <div class="item-date">2026-09-01 10:15</div>
+                            <p class="item-description">Не печатает, ошибка 0x0001</p>
+                        </div>
+                        <div class="item-meta">
+                            <span class="status-badge status-new">Новая</span>
+                            <a href="#" class="photo-link">Фото</a>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="item-main">
+                            <div class="item-title">Заявка #2</div>
+                            <div class="item-date">2026-08-28 14:30</div>
+                            <p class="item-description">Замена картриджа</p>
+                        </div>
+                        <div class="item-meta">
+                            <span class="status-badge status-completed">Завершена</span>
+                            <a href="#" class="photo-link">Фото</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Neslomano. Все права защищены.</p>
+    </footer>
+
+</body>
+</html>

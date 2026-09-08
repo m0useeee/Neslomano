@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание заявки — Neslomano</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/create-ticket.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="tickets.html" class="logo">Neslomano</a>
+        <nav class="header-nav">
+            <ul>
+                <li><a href="tickets.html">Заявки</a></li>
+                <li><a href="create-ticket.html" class="active">Создать заявку</a></li>
+                <li><a href="history.html">История (QR)</a></li>
+                <li><a href="admin.html">Админ-панель</a></li>
+            </ul>
+        </nav>
+        <div class="header-user">
+            <span class="username">Иванов И.</span>
+            <a href="login.html" class="logout-link">Выйти</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Создание заявки на ремонт</h2>
+
+        <form id="createTicketForm" class="ticket-form">
+            <div class="form-section">
+                <h3>Данные оборудования</h3>
+                <div class="form-group">
+                    <label for="cabinetSelect">Кабинет <span class="required">*</span></label>
+                    <select id="cabinetSelect" required>
+                        <option value="">-- Выберите кабинет --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="equipmentSelect">Оборудование <span class="required">*</span></label>
+                    <select id="equipmentSelect" required disabled>
+                        <option value="">-- Сначала выберите кабинет --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="serialNumber">Серийный номер <span class="required">*</span></label>
+                    <input type="text" id="serialNumber" placeholder="Выберите оборудование" readonly required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Описание поломки</h3>
+                <div class="form-group">
+                    <label for="description">Описание <span class="required">*</span></label>
+                    <textarea id="description" rows="4" placeholder="Подробно опишите неисправность..." required></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Фото поломки</h3>
+                <div class="drop-zone" id="dropZone">
+                    <div class="drop-zone-content">
+                        <span class="drop-icon">Upload</span>
+                        <p>Перетащите файл сюда или кликните для выбора</p>
+                        <span class="drop-hint">Поддерживаются JPG, PNG (до 10 МБ)</span>
+                    </div>
+                    <input type="file" id="fileInput" accept=".jpg,.jpeg,.png" style="display:none;">
+                </div>
+                <div id="filePreview" class="file-preview" style="display:none;">
+                    <img id="previewImage" src="#" alt="Превью">
+                    <div class="file-info">
+                        <span id="fileName"></span>
+                        <span id="fileSize"></span>
+                        <button type="button" id="removeFileBtn" class="remove-btn">✕</button>
+                    </div>
+                </div>
+                <div class="form-error" id="fileError"></div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit">Отправить заявку</button>
+                <button type="reset" class="btn-reset-form">Очистить</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 Neslomano. Все права защищены.</p>
+    </footer>
+
+    <script src="js/create-ticket.js"></script>
+</body>
+</html>
