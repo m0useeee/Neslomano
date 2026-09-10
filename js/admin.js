@@ -1,3 +1,4 @@
+// ===== МОК-ДАННЫЕ ДЛЯ ЗАЯВОК (админ) =====
 const adminTickets = [
     { id: 1, equipment: 'Принтер HP LaserJet', reporter: 'Иванов И.', room: '101', branch: 'Главный', status: 'new', created: '2026-09-01 10:15', description: 'Не печатает, ошибка 0x0001' },
     { id: 2, equipment: 'Ноутбук Lenovo', reporter: 'Петрова А.', room: '202', branch: 'Ленина', status: 'in_progress', created: '2026-08-28 14:30', description: 'Не включается, мигает индикатор' },
@@ -8,10 +9,12 @@ const adminTickets = [
     { id: 7, equipment: 'Ноутбук Acer', reporter: 'Кузнецов А.', room: '101', branch: 'Главный', status: 'completed', created: '2026-08-25 12:30', description: 'Замена клавиатуры' },
 ];
 
+// ===== ПЕРЕМЕННЫЕ =====
 let currentPage = 1;
 let pageSize = 10;
 let filteredTickets = [...adminTickets];
 
+// ===== ЭЛЕМЕНТЫ DOM =====
 const tbody = document.getElementById('adminTicketsBody');
 const paginationDiv = document.getElementById('adminPagination');
 const searchInput = document.getElementById('adminSearchInput');
@@ -20,6 +23,7 @@ const filterRoom = document.getElementById('adminFilterRoom');
 const filterBranch = document.getElementById('adminFilterBranch');
 const pageSizeSelect = document.getElementById('adminPageSize');
 
+// ===== ВКЛАДКИ =====
 const tabBtns = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
 
@@ -35,6 +39,7 @@ tabBtns.forEach(btn => {
     });
 });
 
+// ===== ОТРИСОВКА ТАБЛИЦЫ =====
 function renderAdminTickets() {
     applyAdminFilters();
     const totalItems = filteredTickets.length;
@@ -64,7 +69,8 @@ function renderAdminTickets() {
                         <option value="in_progress" ${t.status === 'in_progress' ? 'selected' : ''}>В работе</option>
                         <option value="completed" ${t.status === 'completed' ? 'selected' : ''}>Завершена</option>
                     </select>
-                    <button class="action-btn apply-status" data-id="${t.id}" title="Применить статус">[✓]</button>
+                    <button class="action-btn apply-status" data-id="${t.id}" title="Применить статус">Применить</button>
+                    <a href="admin.html?delete=${t.id}" class="action-btn" onclick="return confirm('Удалить заявку #${t.id}?')">Удалить</a>
                 </td>
             </tr>`;
         });
@@ -119,11 +125,12 @@ function changeStatus(id, newStatus) {
     const ticket = adminTickets.find(t => t.id === id);
     if (ticket) {
         ticket.status = newStatus;
-        alert(`[OK] Статус заявки #${id} изменён на "${newStatus === 'new' ? 'Новая' : newStatus === 'in_progress' ? 'В работе' : 'Завершена'}"`);
+        alert(`Статус заявки #${id} изменён на "${newStatus === 'new' ? 'Новая' : newStatus === 'in_progress' ? 'В работе' : 'Завершена'}"`);
         renderAdminTickets();
     }
 }
 
+// ===== ОБРАБОТЧИКИ ФИЛЬТРОВ =====
 searchInput.addEventListener('input', () => { currentPage = 1; renderAdminTickets(); });
 filterStatus.addEventListener('change', () => { currentPage = 1; renderAdminTickets(); });
 filterRoom.addEventListener('change', () => { currentPage = 1; renderAdminTickets(); });
@@ -134,7 +141,7 @@ pageSizeSelect.addEventListener('change', function() {
     renderAdminTickets();
 });
 
-// Импорт
+// ===== ИМПОРТ ОБОРУДОВАНИЯ ИЗ CSV =====
 const importDropZone = document.getElementById('importDropZone');
 const importFileInput = document.getElementById('importFileInput');
 const importPreview = document.getElementById('importPreview');
@@ -144,8 +151,13 @@ const importError = document.getElementById('importError');
 const importBtn = document.getElementById('importBtn');
 let importedFile = null;
 
-importDropZone.addEventListener('dragover', (e) => { e.preventDefault(); importDropZone.classList.add('dragover'); });
-importDropZone.addEventListener('dragleave', () => { importDropZone.classList.remove('dragover'); });
+importDropZone.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    importDropZone.classList.add('dragover');
+});
+importDropZone.addEventListener('dragleave', () => {
+    importDropZone.classList.remove('dragover');
+});
 importDropZone.addEventListener('drop', (e) => {
     e.preventDefault();
     importDropZone.classList.remove('dragover');
@@ -159,8 +171,9 @@ importFileInput.addEventListener('change', (e) => {
 
 function handleImportFile(file) {
     if (!file.name.endsWith('.csv')) {
-        importError.textContent = '[Ошибка] Поддерживается только формат CSV';
+        importError.textContent = 'Ошибка: Поддерживается только формат CSV';
         importError.style.display = 'block';
+        clearImportPreview();
         return;
     }
     importError.style.display = 'none';
@@ -170,27 +183,30 @@ function handleImportFile(file) {
     importFileInput.value = '';
 }
 
-importRemoveBtn.addEventListener('click', () => {
+function clearImportPreview() {
     importedFile = null;
     importPreview.style.display = 'none';
     importFileName.textContent = '';
     importError.style.display = 'none';
-});
+}
+
+importRemoveBtn.addEventListener('click', clearImportPreview);
 
 importBtn.addEventListener('click', function() {
     if (!importedFile) {
-        importError.textContent = '[Ошибка] Выберите CSV-файл';
+        importError.textContent = 'Ошибка: Выберите CSV-файл';
         importError.style.display = 'block';
         return;
     }
-    alert(`[OK] Импорт пользователей из файла "${importedFile.name}" (в реальном проекте будет отправка на сервер)`);
-    importedFile = null;
-    importPreview.style.display = 'none';
-    importFileName.textContent = '';
+    // Имитация отправки на сервер (в реальном проекте будет fetch)
+    alert(`Импорт оборудования из файла "${importedFile.name}" выполнен (имитация).`);
+    clearImportPreview();
 });
 
+// ===== ЭКСПОРТ ОТЧЁТА (ЗАГЛУШКА) =====
 document.getElementById('exportBtn').addEventListener('click', function() {
-    alert('[Информация] Скачивание CSV-отчёта (реализация будет позже)');
+    alert('Скачивание CSV-отчёта (реализация будет позже)');
 });
 
+// ===== ИНИЦИАЛИЗАЦИЯ =====
 renderAdminTickets();

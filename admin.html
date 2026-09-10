@@ -27,7 +27,6 @@
     </header>
 
     <div class="container">
-        <!-- ===== НОВЫЙ БЛОК С ЗАГОЛОВКОМ И КНОПКОЙ ===== -->
         <div class="page-title">
             <h2>Администрирование</h2>
             <a href="create-ticket.html" class="btn-new">+ Новая заявка</a>
@@ -35,7 +34,7 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-tab="tab-tickets">Все заявки</button>
-            <button class="tab-btn" data-tab="tab-import">Импорт пользователей</button>
+            <button class="tab-btn" data-tab="tab-import">Импорт оборудования</button>
             <button class="tab-btn" data-tab="tab-export">Экспорт отчёта</button>
         </div>
 
@@ -90,11 +89,12 @@
             </div>
         </div>
 
+        <!-- ===== ВКЛАДКА ИМПОРТ ОБОРУДОВАНИЯ ===== -->
         <div id="tab-import" class="tab-content">
             <div class="import-card">
-                <h3>Импорт пользователей из CSV</h3>
-                <p>Загрузите CSV-файл с колонками: <strong>ФИО, email</strong>.</p>
-                <p class="hint">Пример: Иванов Иван, ivanov@college.ru</p>
+                <h3>Импорт оборудования из CSV</h3>
+                <p>Загрузите CSV-файл с колонками: <strong>name, serial_number, room</strong>.</p>
+                <p class="hint">Пример: Принтер HP LaserJet, SN-12345, 101</p>
                 <div class="drop-zone" id="importDropZone">
                     <div class="drop-zone-content">
                         <span class="drop-icon">Upload</span>
@@ -108,10 +108,11 @@
                     <button type="button" id="importRemoveBtn" class="remove-btn">✕</button>
                 </div>
                 <div id="importError" class="form-error"></div>
-                <button id="importBtn" class="btn-import">Загрузить и создать пользователей</button>
+                <button id="importBtn" class="btn-import">Загрузить и создать оборудование</button>
             </div>
         </div>
 
+        <!-- ===== ВКЛАДКА ЭКСПОРТ ОТЧЁТА ===== -->
         <div id="tab-export" class="tab-content">
             <div class="export-card">
                 <h3>Экспорт отчёта по заявкам</h3>

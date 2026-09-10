@@ -88,7 +88,6 @@ removeFileBtn.addEventListener('click', () => {
     fileError.style.display = 'none';
 });
 
-// ===== СКАЧИВАНИЕ ФОТО (ЗАГЛУШКА) =====
 document.querySelector('.btn-download-photo')?.addEventListener('click', function() {
     alert('[Информация] Скачивание фото (будет реализовано позже)');
 });

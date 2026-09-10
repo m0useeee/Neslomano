@@ -357,3 +357,8 @@ tr:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(42, 125, 225, 0.3);
 }
+.import-card .hint {
+    font-size: 13px;
+    color: #6b7a8f;
+    margin-bottom: 15px;
+}

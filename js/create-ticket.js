@@ -39,7 +39,7 @@ data.cabinets.forEach(cab => {
 // ===== ПРИ ВЫБОРЕ КАБИНЕТА – ОБНОВЛЯЕМ ОБОРУДОВАНИЕ =====
 cabinetSelect.addEventListener('change', function() {
     const cabinetId = parseInt(this.value);
-    equipmentSelect.innerHTML = '<option value="">-- Выберите оборудование --</option>';
+    equipmentSelect.innerHTML = '<option value="">Выберите оборудование</option>';
     equipmentSelect.disabled = true;
     serialInput.value = '';
 
@@ -149,7 +149,7 @@ form.addEventListener('reset', () => {
     clearFilePreview();
     fileError.style.display = 'none';
     cabinetSelect.value = '';
-    equipmentSelect.innerHTML = '<option value="">-- Сначала выберите кабинет --</option>';
+    equipmentSelect.innerHTML = '<option value="">Сначала выберите кабинет</option>';
     equipmentSelect.disabled = true;
     serialInput.value = '';
     document.querySelectorAll('input, textarea').forEach(el => el.value = '');
